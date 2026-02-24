@@ -5,8 +5,8 @@ import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim"; 
 
 import './Hero.css';
-import profileImage1 from '../../assets/image1.png'; 
-import profileImage2 from '../../assets/image2.png'; 
+import profileImage1 from '../../assets/image1.jpg';
+import profileImage2 from '../../assets/image2.jpg'; 
 import ParticlesBackground from '../../components/ParticlesBackground';
 
 const Hero = () => {
@@ -52,7 +52,7 @@ const Hero = () => {
           ) : (
             <div key="name" className="fade-in">
               <h1 className="headline-large">
-                I'm <span className="highlight">Waleed Iftikhar</span>
+                I'm <span className="highlight">Alamgeer Khan</span>
               </h1>
               <p className="sub-headline">A Freelance MERN Developer</p>
             </div>
@@ -76,7 +76,7 @@ const Hero = () => {
   <img
     key={isFirstView ? 'image1' : 'image2'}
     src={isFirstView ? profileImage1 : profileImage2}
-    alt="Waleed Iftikhar"
+    alt="Alamgeer Khan"
     className="fade-in"
     loading="lazy"
     

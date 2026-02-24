@@ -99,7 +99,7 @@ const Contact = () => {
               <FaPaperPlane />
             </div>
             <h3 className="info-title">EMAIL ADDRESS</h3>
-            <p>waleediftikhar188@gmail.com</p>
+            <p>khanalamgeer996@gmail.com</p>
           </div>
         </div>
 

@@ -37,7 +37,7 @@ const Footer = () => {
             <li><a href="#services">→ Web Development</a></li>
             <li><a href="#services">→ Ui/Ux Designer</a></li>
             <li><a href="#services">→ MERN STACK Developer</a></li>
-            <li><a href="#services">→ Video Editor</a></li>
+            {/* <li><a href="#services">→ Video Editor</a></li> */}
           </ul>
         </div>
 
@@ -50,25 +50,25 @@ const Footer = () => {
             </li>
             <li>
               <span><FaPhone /></span>
-              <p>0303-0834088</p>
+              <p>03366043862</p>
             </li>
             <li>
               <span><FaEnvelope /></span>
-              <p>waleediftikhar188@gmail.com</p>
+              <p>khanalamgeer996@gmail.com</p>
             </li>
           </ul>
 
           <div className="social-icons">
-  <a href="https://github.com/waleedjatt88" target="_blank" rel="noopener noreferrer">
+  <a href="https://github.com/Alamgir651" target="_blank" rel="noopener noreferrer">
     <FaGithub />
   </a>
-  <a href="https://www.facebook.com/ch.waleed.98622/" target="_blank" rel="noopener noreferrer">
+  <a href="https://www.facebook.com/Alamgeer.khan.921230" target="_blank" rel="noopener noreferrer">
     <FaFacebookF />
   </a>
-  <a href="https://www.instagram.com/waleed_jutt_88/" target="_blank" rel="noopener noreferrer">
+  <a href="https://www.instagram.com/alamgir.baloch9/" target="_blank" rel="noopener noreferrer">
     <FaInstagram />
   </a>
-  <a href="https://www.linkedin.com/in/waleed-iftikhar-968254324/" target="_blank" rel="noopener noreferrer">
+  <a href="https://www.linkedin.com/in/alamgeerkhan-softwareengineer/" target="_blank" rel="noopener noreferrer">
     <FaLinkedinIn />
   </a>
 </div>
@@ -76,7 +76,7 @@ const Footer = () => {
 
       </div>
       <div className="copyright-text">
-        <p>© {new Date().getFullYear()} All rights reserved | This Portfolio is made by Waleed Iftikhar.</p>
+        <p>© {new Date().getFullYear()} All rights reserved | This Portfolio is made by Alamgeer Khan.</p>
       </div>
     </footer>
   );

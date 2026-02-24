@@ -12,7 +12,7 @@ const Resume = () => {
   }, []);
 
   
-  const CV_FILE_URL = '/waleed-iftikhar.pdf';
+  const CV_FILE_URL = '/alamgeer-khan.pdf';
 
   return (
     <section id="resume" className="resume-section">
