@@ -62,6 +62,19 @@
   color: #ffffff;
 }
 
+.typing-cursor {
+  display: inline-block;
+  color: #f0ad4e;
+  font-weight: 100;
+  animation: blink 0.8s step-end infinite;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
 .sub-headline {
   font-size: 1.6rem;
   margin-top: 10px;

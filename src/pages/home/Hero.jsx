@@ -9,14 +9,55 @@ import profileImage1 from '../../assets/image1.jpg';
 import profileImage2 from '../../assets/image2.jpg'; 
 import ParticlesBackground from '../../components/ParticlesBackground';
 
+const phrases = [
+  "Full Stack MERN Developer",
+  "Alamgeer Khan",
+  "Freelance MERN Developer",
+];
+
+const useTypewriter = (words, typingSpeed = 80, deletingSpeed = 40, pauseTime = 2000) => {
+  const [displayText, setDisplayText] = useState('');
+  const [wordIndex, setWordIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const currentWord = words[wordIndex];
+
+    if (!isDeleting && displayText === currentWord) {
+      const pause = setTimeout(() => setIsDeleting(true), pauseTime);
+      return () => clearTimeout(pause);
+    }
+
+    if (isDeleting && displayText === '') {
+      setIsDeleting(false);
+      setWordIndex((prev) => (prev + 1) % words.length);
+      return;
+    }
+
+    const timeout = setTimeout(() => {
+      setDisplayText(
+        isDeleting
+          ? currentWord.substring(0, displayText.length - 1)
+          : currentWord.substring(0, displayText.length + 1)
+      );
+    }, isDeleting ? deletingSpeed : typingSpeed);
+
+    return () => clearTimeout(timeout);
+  }, [displayText, isDeleting, wordIndex, words, typingSpeed, deletingSpeed, pauseTime]);
+
+  return displayText;
+};
+
 const Hero = () => {
   const [init, setInit] = useState(false);
-  const [isFirstView, setIsFirstView] = useState(true);
+  const [imageIndex, setImageIndex] = useState(0);
+  const typedText = useTypewriter(phrases);
+  const images = [profileImage1, profileImage2];
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setIsFirstView(prevView => !prevView);
-    }, 3000); 
+      setImageIndex((prev) => (prev + 1) % images.length);
+    }, 4000);
     return () => clearInterval(timer);
   }, []);
 
@@ -26,7 +67,7 @@ const Hero = () => {
     }).then(() => {
       setInit(true);
     });
-  }, []); 
+  }, []);
 
   if (!init) {
     return null;
@@ -34,60 +75,44 @@ const Hero = () => {
 
   return (
     <section id='home' className="hero-section">
-       
         <ParticlesBackground id="hero-particles" />
-
 
       <div className="hero-content">
         <p className="greeting">HELLO!</p>
-        
+
         <div className="headline-wrapper">
-          {isFirstView ? (
-            <div key="frontend" className="fade-in">
-              <h1 className="headline-small">I'm a</h1>
-              <h1 className="headline-large">
-                <span className="highlight">Full Stack MERN</span><span className="text-white"> Developer</span>
-              </h1>
-            </div>
-          ) : (
-            <div key="name" className="fade-in">
-              <h1 className="headline-large">
-                I'm <span className="highlight">Alamgeer Khan</span>
-              </h1>
-              <p className="sub-headline">A Freelance MERN Developer</p>
-            </div>
-          )}
+          <h1 className="headline-small">I'm a</h1>
+          <h1 className="headline-large">
+            <span className="highlight">{typedText}</span>
+            <span className="typing-cursor">|</span>
+          </h1>
         </div>
 
+        <div className="button-group">
+          <Link to="/#contact" className="btn hire-me-btn">
+            HIRE ME
+          </Link>
+          <Link to="/#projects" className="btn my-works-btn">
+            MY WORKS
+          </Link>
+        </div>
+      </div>
 
-
-<div className="button-group">
-    <Link to="/#contact" className="btn hire-me-btn">
-        HIRE ME
-    </Link>
-    
-    <Link to="/#projects" className="btn my-works-btn">
-        MY WORKS
-    </Link>
-</div>
-</div>
-      
       <div className="hero-image">
-  <img
-    key={isFirstView ? 'image1' : 'image2'}
-    src={isFirstView ? profileImage1 : profileImage2}
-    alt="Alamgeer Khan"
-    className="fade-in"
-    loading="lazy"
-    
-    width="500"
-    height="500" 
-  />
-</div>
+        <img
+          key={imageIndex}
+          src={images[imageIndex]}
+          alt="Alamgeer Khan"
+          className="fade-in"
+          loading="lazy"
+          width="500"
+          height="500"
+        />
+      </div>
 
       <div className="slider-dots">
-        <span className={`dot ${isFirstView ? 'active' : ''}`}></span>
-        <span className={`dot ${!isFirstView ? 'active' : ''}`}></span>
+        <span className={`dot ${imageIndex === 0 ? 'active' : ''}`}></span>
+        <span className={`dot ${imageIndex === 1 ? 'active' : ''}`}></span>
       </div>
     </section>
   );
