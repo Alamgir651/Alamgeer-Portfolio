@@ -1,6 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import AOS from 'aos';
+import React, { useEffect, useState, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Projects.css';
+
+gsap.registerPlugin(ScrollTrigger);
 import { FaGithub, FaExternalLinkAlt, FaCheckCircle, FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { SiReact, SiNodedotjs, SiMongodb, SiExpress, SiPostgresql, SiTypescript } from 'react-icons/si';
 
@@ -87,12 +90,30 @@ const getTechIcon = (tech) => {
 
 const Projects = () => {
   const [expandedFeatures, setExpandedFeatures] = useState({});
+  const gridRef = useRef(null);
 
   useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      once: true,
-    });
+    const cards = gridRef.current.querySelectorAll('.project-card');
+
+    gsap.fromTo(cards,
+      { opacity: 0, y: 100, rotateX: 5 },
+      {
+        opacity: 1,
+        y: 0,
+        rotateX: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+        stagger: { each: 0.2, from: 'start' },
+        scrollTrigger: {
+          trigger: gridRef.current,
+          start: 'top 75%',
+          toggleActions: 'play none none none',
+          once: true,
+        },
+      }
+    );
+
+    return () => ScrollTrigger.getAll().forEach((t) => t.kill());
   }, []);
 
   const toggleFeatures = (index) => {
@@ -114,13 +135,11 @@ const Projects = () => {
           </p>
         </div>
 
-        <div className="projects-grid">
+        <div className="projects-grid" ref={gridRef}>
           {projectsData.map((project, index) => (
-            <div 
-              className="project-card" 
+            <div
+              className="project-card"
               key={index}
-              data-aos="fade-up"
-              data-aos-delay={index * 100}
             >
               <div className="project-image" style={{ background: project.gradient }}>
                 <div className="project-icon">{project.icon}</div>

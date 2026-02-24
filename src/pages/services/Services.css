@@ -62,9 +62,9 @@
 .service-card {
   background-color: #1a1a1a;
   padding: 30px 30px;
-    border: 2px solid #2a2a2a;
-    cursor: pointer;
-  
+  border: 2px solid #2a2a2a;
+  cursor: pointer;
+  opacity: 0;
 }
 .service-card:hover {
    transform: translateY(-10px) ;
